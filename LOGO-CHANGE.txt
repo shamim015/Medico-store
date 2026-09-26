@@ -1,0 +1,4 @@
+Logo updated to assets/medico-store-logo.png.
+HTML: index.html now references the new PNG logo.
+CSS: no change required; existing 156x46 desktop and 140px mobile sizing preserves the logo ratio.
+JavaScript: no change required; logo is static HTML.
