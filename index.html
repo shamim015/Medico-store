@@ -11,10 +11,16 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="CSS/style.css" />
+    <base target="_blank" />
   </head>
   <body>
     <header class="navbar">
       <div class="nav-top">
+        <!-- Mobile menu toggle -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+
         <!-- Logo -->
         <a class="logo" href="#">
           <img src="assets/medico-store-logo.png" alt="Medico Store" />
@@ -95,6 +101,24 @@
         <a href="#respiratory">Respiratory Health</a>
       </nav>
     </header>
+
+    <!-- Mobile category drawer -->
+    <aside class="mobile-drawer" id="mobileDrawer">
+      <div class="drawer-head">
+        <h3>All Categories</h3>
+        <button id="closeMenu" aria-label="Close menu">×</button>
+      </div>
+      <a href="#pain">Pain Relief</a>
+      <a href="#cold">Cold and Flu</a>
+      <a href="#diabetes">Diabetes Care</a>
+      <a href="#digestive">Digestive Health</a>
+      <a href="#firstaid">First Aid</a>
+      <a href="#skincare">Skin Care</a>
+      <a href="#baby">Child and Baby Care</a>
+      <a href="#heart">Heart Health</a>
+      <a href="#eye">Eye and Ear Care</a>
+      <a href="#respiratory">Respiratory Health</a>
+    </aside>
 
     <main>
       <section class="hero">
@@ -222,7 +246,7 @@
               <div class="old-price">$37.00</div>
               <div class="new-price">$37.00 <small>Including Tax</small></div>
             </div>
-            <img src="assets/promo-toothpaste.png" alt="" />
+            <img src="assets/disbeyazlaticiset-2.png" alt="" />
           </div>
         </div>
       </section>
@@ -412,6 +436,41 @@
       <button class="checkout" id="checkout">Place Order</button>
     </div>
     <div class="overlay" id="overlay"></div>
+
+    <!-- Mobile bottom navigation -->
+    <nav class="mobile-nav">
+      <a href="#" class="active" id="mobileHome">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 11l9-8 9 8"></path>
+          <path d="M5 10v10h14V10"></path>
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="#" id="mobileSearch">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="6"></circle>
+          <line x1="16" y1="16" x2="21" y2="21"></line>
+        </svg>
+        <span>Search</span>
+      </a>
+      <a href="#" id="mobileCart">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 5h2l2.2 10h9.6L19 8H6"></path>
+          <circle cx="9" cy="19" r="1.2"></circle>
+          <circle cx="17" cy="19" r="1.2"></circle>
+        </svg>
+        <span>Cart</span>
+        <b class="badge" id="cartCountMobile">0</b>
+      </a>
+      <a href="#" id="mobileAccount">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="3.2"></circle>
+          <path d="M5.5 20c.8-4 3-6 6.5-6s5.7 2 6.5 6"></path>
+        </svg>
+        <span>Account</span>
+      </a>
+    </nav>
+
     <div class="toast" id="toast"></div>
 
     <script src="JS/script.js"></script>

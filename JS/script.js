@@ -135,13 +135,12 @@ let cart = JSON.parse(localStorage.getItem("healthyCart") || "[]");
 
 function card(p, index) {
   return `<article class="product-card">
-    <button class="heart" data-heart="${index}">♡</button>
     <div class="product-image"><img src="${p.img}" alt="${p.name}"></div>
     <div class="product-info">
       <h3>${p.name}</h3>
       <div class="price-line"><span class="price">${p.price}</span><span class="price old">${p.old}</span></div>
     </div>
-    <button class="add" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}'>Add to Cart <span>🛒</span></button>
+    <button class="add" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}'>Add to Cart <svg class="bag-icon" viewBox="0 0 24 24"><path d="M6 7h12l1 13.5a2 2 0 0 1-2 2.1H7a2 2 0 0 1-2-2.1L6 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg></button>
   </article>`;
 }
 function render(id, list) {
@@ -157,6 +156,8 @@ function save() {
 }
 function updateCart() {
   document.getElementById("cartCount").textContent = cart.length;
+  const mobileBadge = document.getElementById("cartCountMobile");
+  if (mobileBadge) mobileBadge.textContent = cart.length;
   document.getElementById("cartItems").innerHTML = cart.length
     ? cart
         .map(
@@ -202,15 +203,49 @@ document.addEventListener("click", (e) => {
     save();
     return;
   }
-  const heart = e.target.closest("[data-heart]");
-  if (heart) {
-    heart.textContent = heart.textContent === "♡" ? "♥" : "♡";
-    return;
-  }
 });
+// ===== Mobile drawer (hamburger menu) =====
+const mobileDrawer = document.getElementById("mobileDrawer");
+function openMenu() {
+  mobileDrawer.classList.add("open");
+  document.getElementById("overlay").classList.add("show");
+}
+function closeMenu() {
+  mobileDrawer.classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+document.getElementById("menuToggle").onclick = openMenu;
+document.getElementById("closeMenu").onclick = closeMenu;
+mobileDrawer.querySelectorAll("a").forEach((a) => {
+  a.addEventListener("click", closeMenu);
+});
+
+// ===== Cart & overlay =====
 document.getElementById("cartButton").onclick = openCart;
 document.getElementById("closeCart").onclick = closeCart;
-document.getElementById("overlay").onclick = closeCart;
+document.getElementById("overlay").onclick = () => {
+  closeCart();
+  closeMenu();
+};
+
+// ===== Mobile bottom navigation =====
+document.getElementById("mobileHome").onclick = (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+document.getElementById("mobileSearch").onclick = (e) => {
+  e.preventDefault();
+  document.getElementById("searchInput").focus();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+document.getElementById("mobileCart").onclick = (e) => {
+  e.preventDefault();
+  openCart();
+};
+document.getElementById("mobileAccount").onclick = (e) => {
+  e.preventDefault();
+  toast("Account page coming soon");
+};
 document.getElementById("checkout").onclick = () =>
   toast(
     cart.length
