@@ -744,11 +744,11 @@ button {
 }
 .big-offer img {
   position: absolute;
-  width: 303px;
-  height: 476px;
+  width: 298px;
+  height: 448px;
   object-fit: contain;
-  right: 24px;
-  bottom: 24px;
+  right: 40px;
+  bottom: 32px;
 }
 .old-price {
   font-size: 20px;
@@ -897,37 +897,20 @@ button {
   width: 572px;
   height: 482px;
 }
-.medicine-circle {
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  right: 45px;
-  top: 45px;
-  background: #e6f5dd;
-}
 .hot-art img {
   position: absolute;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.1));
+  left: 50%;
+  transform: translateX(-50%);
 }
-.hot-art img:nth-of-type(1) {
-  width: 150px;
-  height: 210px;
-  right: 310px;
-  top: 95px;
+.hot-art .frame-top {
+  width: 260px;
+  height: auto;
+  top: 20px;
 }
-.hot-art img:nth-of-type(2) {
-  width: 130px;
-  height: 150px;
-  right: 85px;
-  top: 50px;
-}
-.hot-art img:nth-of-type(3) {
-  width: 155px;
-  height: 155px;
-  right: 150px;
-  top: 255px;
+.hot-art .frame-bottom {
+  width: 340px;
+  height: auto;
+  top: 190px;
 }
 
 .news {
@@ -1622,30 +1605,6 @@ footer {
   .hot-art {
     height: 340px;
     margin-top: 10px;
-  }
-  .medicine-circle {
-    width: 260px;
-    height: 260px;
-    right: 20px;
-    top: 40px;
-  }
-  .hot-art img:nth-of-type(1) {
-    width: 110px;
-    height: auto;
-    right: 215px;
-    top: 70px;
-  }
-  .hot-art img:nth-of-type(2) {
-    width: 95px;
-    height: auto;
-    right: 55px;
-    top: 35px;
-  }
-  .hot-art img:nth-of-type(3) {
-    width: 110px;
-    height: auto;
-    right: 105px;
-    top: 185px;
   }
   .news {
     padding-top: 30px;
@@ -2894,5 +2853,187 @@ footer {
   .card-two {
     right: -4px;
     bottom: 8%;
+  }
+}
+
+/* Hot offer artwork — separated layers, matching the supplied reference */
+.hot-art {
+  overflow: visible;
+}
+.hot-art .hot-layer {
+  position: absolute;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: auto;
+  max-width: none;
+  transform: none;
+  display: block;
+  pointer-events: none;
+}
+.hot-art .hot-capsules-top {
+  width: 283px;
+  right: 7px;
+  top: 25px;
+  z-index: 4;
+}
+.hot-art .hot-particles {
+  width: 172px;
+  right: 64px;
+  top: 133px;
+  z-index: 3;
+}
+.hot-art .hot-leaves {
+  width: 260px;
+  left: 10px;
+  top: 120px;
+  z-index: 2;
+}
+.hot-art .hot-capsules-bottom {
+  width: 383px;
+  left: 0;
+  top: 300px;
+  z-index: 1;
+}
+/* Hot Offer — Mobile Responsive Override
+   Add this AFTER your existing Hot Offer CSS.
+*/
+
+@media (max-width: 767px) {
+  /* Main hero section */
+  .hot-offer,
+  .hot-offer-section,
+  .hot-banner {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 45px 20px 35px !important;
+    overflow: hidden !important;
+  }
+
+  /* Keep the content stacked on mobile */
+  .hot-offer .container,
+  .hot-offer-section .container,
+  .hot-banner .container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hot-offer .row,
+  .hot-offer-section .row,
+  .hot-banner .row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Text area */
+  .hot-offer .content,
+  .hot-offer-section .content,
+  .hot-banner .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: left !important;
+  }
+
+  .hot-offer h1,
+  .hot-offer-section h1,
+  .hot-banner h1 {
+    font-size: clamp(34px, 9vw, 46px) !important;
+    line-height: 1.12 !important;
+    margin: 8px 0 20px !important;
+  }
+
+  .hot-offer p,
+  .hot-offer-section p,
+  .hot-banner p {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    max-width: 100% !important;
+  }
+
+  .hot-offer .btn,
+  .hot-offer-section .btn,
+  .hot-banner .btn {
+    margin-top: 18px !important;
+  }
+
+  /* Artwork goes underneath the text */
+  .hot-art {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 390px !important;
+    height: 360px !important;
+    margin: 20px auto 0 !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  .hot-art .hot-capsules-top {
+    top: 5px !important;
+    left: 50% !important;
+    width: 190px !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .hot-art .hot-particles {
+    top: 105px !important;
+    left: 50% !important;
+    width: 165px !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .hot-art .hot-leaves {
+    top: 115px !important;
+    left: 18% !important;
+    width: 170px !important;
+  }
+
+  .hot-art .hot-capsules-bottom {
+    top: 235px !important;
+    left: 50% !important;
+    width: 210px !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+  .hot-offer,
+  .hot-offer-section,
+  .hot-banner {
+    padding: 35px 16px 25px !important;
+  }
+
+  .hot-offer h1,
+  .hot-offer-section h1,
+  .hot-banner h1 {
+    font-size: 34px !important;
+  }
+
+  .hot-art {
+    max-width: 340px !important;
+    height: 325px !important;
+    margin-top: 12px !important;
+  }
+
+  .hot-art .hot-capsules-top {
+    width: 165px !important;
+  }
+
+  .hot-art .hot-particles {
+    top: 92px !important;
+    width: 145px !important;
+  }
+
+  .hot-art .hot-leaves {
+    top: 105px !important;
+    left: 13% !important;
+    width: 150px !important;
+  }
+
+  .hot-art .hot-capsules-bottom {
+    top: 215px !important;
+    width: 185px !important;
   }
 }
