@@ -278,3 +278,137 @@ document.getElementById("allCategories").onclick = () =>
   toast("Choose a category from the navigation bar");
 
 updateCart();
+
+
+/* ===== Medico Store — Animations (load AFTER script.js) ===== */
+(() => {
+  const root = document.documentElement;
+  const $ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---- Loader ----
+  const loader = document.getElementById("pageLoader");
+  let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    root.classList.add("ready");
+    if (loader) {
+      loader.classList.add("done");
+      setTimeout(() => loader.remove(), 700);
+    }
+  };
+  const minWait = new Promise((r) => setTimeout(r, 700));
+  const loaded = new Promise((r) =>
+    document.readyState === "complete" ? r() : addEventListener("load", r)
+  );
+  Promise.all([minWait, loaded]).then(start);
+  setTimeout(start, 3500); // safety
+
+  // ---- Scroll reveal ----
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        io.unobserve(el);
+        el.classList.add("in");
+        if (el.dataset.count) countUp(el);
+        // clean up so original hover transitions come back
+        setTimeout(() => {
+          el.classList.remove("reveal", "in");
+          el.style.removeProperty("--d");
+        }, 1100 + parseInt(el.style.getPropertyValue("--d") || 0));
+      }),
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+  function reveal(el, i = 0, type = "") {
+    if (!el || el.classList.contains("reveal")) return;
+    el.classList.add("reveal");
+    if (type) el.dataset.r = type;
+    el.style.setProperty("--d", i * 100 + "ms");
+    io.observe(el);
+  }
+  const group = (sel, type = "", perRow = 4) =>
+    $(sel).forEach((el, i) => reveal(el, i % perRow, type));
+
+  group(".section-title");
+  group(".offer-card");
+  group(".big-offer", "left");
+  group(".mini-offer", "right", 2);
+  group(".stat");
+  reveal($(".hot-copy")[0], 0, "left");
+  reveal($(".hot-art")[0], 1, "right");
+  reveal($(".news > h2")[0]);
+  reveal($(".news-main")[0], 0, "left");
+  group(".news-row", "right", 3);
+  group(".footer-col", "", 5);
+
+  // product cards (also re-rendered by search)
+  $(".product-grid").forEach((grid) => {
+    $(".product-card", grid).forEach((c, i) => reveal(c, i % 4));
+    new MutationObserver(() =>
+      $(".product-card", grid).forEach((c, i) => reveal(c, i % 4))
+    ).observe(grid, { childList: true });
+  });
+
+  // ---- Counter (14K+, 250+ ...) ----
+  $(".stat strong").forEach((s) => {
+    const m = s.textContent.trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
+    if (!m) return;
+    s.dataset.target = m[1];
+    s.dataset.suffix = m[2];
+    s.textContent = "0" + m[2];
+    s.closest(".stat").dataset.count = "1";
+  });
+  function countUp(stat) {
+    const s = $("strong", stat)[0];
+    if (!s || !s.dataset.target) return;
+    const end = parseFloat(s.dataset.target), dur = 1800, t0 = performance.now();
+    const tick = (t) => {
+      const p = Math.min((t - t0) / dur, 1);
+      s.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + s.dataset.suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  // ---- Navbar shadow, progress bar, back-to-top ----
+  const nav = $(".navbar")[0], bar = document.getElementById("scrollProgress"),
+    top = document.getElementById("toTop");
+  let ticking = false;
+  const onScroll = () => {
+    const y = scrollY, h = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+    nav && nav.classList.toggle("scrolled", y > 10);
+    top && top.classList.toggle("show", y > 500);
+    ticking = false;
+  };
+  addEventListener("scroll", () => !ticking && (ticking = true, requestAnimationFrame(onScroll)), { passive: true });
+  top && (top.onclick = () => scrollTo({ top: 0, behavior: "smooth" }));
+  onScroll();
+
+  // ---- Cart badge bump ----
+  ["cartCount", "cartCountMobile"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    new MutationObserver(() => {
+      el.classList.remove("bump");
+      void el.offsetWidth;
+      el.classList.add("bump");
+    }).observe(el, { childList: true, characterData: true, subtree: true });
+  });
+
+  // ---- Button ripple ----
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".add,.hero-button,.checkout,.hot-copy button");
+    if (!b || reduce) return;
+    b.classList.add("ripple-host");
+    const r = b.getBoundingClientRect(), d = Math.max(r.width, r.height);
+    const s = document.createElement("span");
+    s.className = "ripple";
+    s.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX - r.left - d / 2}px;top:${e.clientY - r.top - d / 2}px`;
+    b.appendChild(s);
+    setTimeout(() => s.remove(), 650);
+  });
+})();
