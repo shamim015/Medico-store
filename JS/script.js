@@ -412,3 +412,23 @@ updateCart();
     setTimeout(() => s.remove(), 650);
   });
 })();
+
+// ===== Mobile: search icon toggle =====
+(() => {
+  const nav = document.querySelector(".navbar");
+  const input = document.getElementById("searchInput");
+  const btn = document.getElementById("searchToggle");
+  if (!nav || !input || !btn) return;
+  const open = () => { nav.classList.add("search-open"); setTimeout(() => input.focus(), 60); };
+  const close = () => nav.classList.remove("search-open");
+  btn.onclick = () => (nav.classList.contains("search-open") ? close() : open());
+  document.getElementById("mobileSearch").onclick = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    open();
+  };
+  document.getElementById("searchButton").addEventListener("click", () => { if (input.value.trim()) close(); });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" || (e.key === "Enter" && input.value.trim())) close();
+  });
+})();
