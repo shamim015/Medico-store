@@ -5,24 +5,36 @@ const products = {
       price: "$12.90",
       old: "$24.78",
       img: "assets/product-catheter.webp",
+      desc: "Sterile latex Foley catheter with urine collection bag. Soft balloon tip for patient comfort. Ideal for continuous drainage in clinical and home care settings.",
+      category: "Urology",
+      stock: "In Stock",
     },
     {
       name: "Thermometer",
       price: "$8.98",
       old: "$24.78",
       img: "assets/product-thermometer.webp",
+      desc: "Non-contact infrared digital thermometer. Fast and accurate readings in under 1 second. Fever alarm and memory recall for the last 32 measurements.",
+      category: "Diagnostics",
+      stock: "In Stock",
     },
     {
       name: "Non-rebreather mask",
       price: "$3.32",
       old: "$24.78",
       img: "assets/product-mask.webp",
+      desc: "High-concentration oxygen delivery mask with reservoir bag. One-way valves prevent rebreathing. Soft, adjustable straps for a secure fit.",
+      category: "Respiratory",
+      stock: "In Stock",
     },
     {
       name: "Wound Dressing",
       price: "$24.78",
       old: "$24.78",
       img: "assets/product-dressing.webp",
+      desc: "QuikClot bleeding control dressing. Advanced hemostatic gauze that helps stop bleeding fast. Sterile and ready for emergency first-aid use.",
+      category: "Wound Care",
+      stock: "In Stock",
     },
   ],
   popularProducts: [
@@ -31,24 +43,36 @@ const products = {
       price: "$2.00",
       old: "$24.78",
       img: "assets/product-oxygen-mask.webp",
+      desc: "Soft, transparent oxygen mask with adjustable elastic strap. Comfortable for prolonged use. Suitable for adult patients needing supplemental oxygen.",
+      category: "Respiratory",
+      stock: "In Stock",
     },
     {
       name: "Surgical Gloves",
       price: "$1.99",
       old: "$24.78",
       img: "assets/product-gloves.webp",
+      desc: "Powder-free nitrile surgical gloves. Excellent tactile sensitivity and puncture resistance. Latex-free for allergy-safe use in procedures.",
+      category: "Protection",
+      stock: "In Stock",
     },
     {
       name: "Medical Mask",
       price: "$0.89",
       old: "$24.78",
       img: "assets/product-medical-mask.webp",
+      desc: "3-ply disposable surgical face mask with ear loops. High filtration efficiency against particles and droplets. Soft inner layer for all-day comfort.",
+      category: "Protection",
+      stock: "In Stock",
     },
     {
       name: "Hand Sanitizer",
       price: "$4.00",
       old: "$24.78",
       img: "assets/product-sanitizer.webp",
+      desc: "Instant hand sanitizer with 70% alcohol. Kills 99.9% of germs without water. Moisturizing formula that leaves hands soft, not sticky.",
+      category: "Hygiene",
+      stock: "In Stock",
     },
   ],
   topProducts: [
@@ -57,24 +81,36 @@ const products = {
       price: "$109.89",
       old: "$24.78",
       img: "assets/product-bed.webp",
+      desc: "Adjustable hospital bed with side rails and durable steel frame. Easy height and position controls. Ideal for home care and clinical recovery.",
+      category: "Mobility",
+      stock: "In Stock",
     },
     {
       name: "Walker Mobility",
       price: "$12.80",
       old: "$24.78",
       img: "assets/product-walker.webp",
+      desc: "Lightweight folding walker with non-slip rubber tips. Height-adjustable aluminum frame. Provides stable support for everyday mobility.",
+      category: "Mobility",
+      stock: "In Stock",
     },
     {
       name: "Wheelchair",
       price: "$30.00",
       old: "$24.78",
       img: "assets/product-wheelchair.webp",
+      desc: "Manual wheelchair with padded seat and foldable design. Smooth-rolling wheels and reliable brakes. Comfortable for daily transport needs.",
+      category: "Mobility",
+      stock: "In Stock",
     },
     {
       name: "Crutches",
       price: "$24.78",
       old: "$24.78",
       img: "assets/product-crutches.webp",
+      desc: "Adjustable aluminum underarm crutches with soft underarm pads. Non-slip rubber tips for safety. Lightweight and durable for recovery support.",
+      category: "Mobility",
+      stock: "In Stock",
     },
   ],
   medicalProducts: [
@@ -83,24 +119,36 @@ const products = {
       price: "$15.09",
       old: "$24.78",
       img: "assets/product-bp.webp",
+      desc: "Aneroid blood pressure monitor with dual-tube cuff. Accurate gauge and comfortable adult-size cuff. Essential tool for clinical BP checks.",
+      category: "Diagnostics",
+      stock: "In Stock",
     },
     {
       name: "Digital Stethoscope",
       price: "$29.99",
       old: "$24.78",
       img: "assets/product-stethoscope.webp",
+      desc: "High-sensitivity digital stethoscope with dual-head chest piece. Clear acoustic performance for heart and lung sounds. Soft ear tips included.",
+      category: "Diagnostics",
+      stock: "In Stock",
     },
     {
       name: "Glucometer",
       price: "$12.08",
       old: "$24.78",
       img: "assets/product-glucometer.webp",
+      desc: "Portable blood glucose meter with fast results. Easy-to-read display and small sample size. Ideal for daily diabetes monitoring at home.",
+      category: "Diagnostics",
+      stock: "In Stock",
     },
     {
       name: "Pulse Oximeter",
       price: "$30.00",
       old: "$24.78",
       img: "assets/product-oximeter.webp",
+      desc: "Fingertip pulse oximeter measuring SpO2 and pulse rate. OLED display with multi-direction view. Compact, accurate, and battery powered.",
+      category: "Diagnostics",
+      stock: "In Stock",
     },
   ],
   upcomingProducts: [
@@ -109,24 +157,36 @@ const products = {
       price: "$5.78",
       old: "$24.78",
       img: "assets/product-dressing.webp",
+      desc: "Sterile absorbent wound dressing pads. Soft non-stick surface promotes healing. Suitable for minor cuts, abrasions, and post-procedure care.",
+      category: "Wound Care",
+      stock: "Coming Soon",
     },
     {
       name: "IV Catheter",
       price: "$2.00",
       old: "$24.78",
       img: "assets/product-iv-catheter.webp",
+      desc: "Peripheral IV catheter with safety needle. Smooth insertion and secure fixation. Available in standard gauge sizes for clinical use.",
+      category: "Infusion",
+      stock: "Coming Soon",
     },
     {
       name: "Blood Pressure Cuff",
       price: "$24.78",
       old: "$24.78",
       img: "assets/product-bp-cuff.webp",
+      desc: "Replacement adult blood pressure cuff with durable nylon fabric. Compatible with most aneroid and digital monitors. Easy-clean surface.",
+      category: "Diagnostics",
+      stock: "Coming Soon",
     },
     {
       name: "Chest Tube",
       price: "$58.56",
       old: "$24.78",
       img: "assets/product-chest-tube.webp",
+      desc: "Sterile chest drainage tube for thoracic procedures. Flexible medical-grade material with clear markings. Designed for safe clinical drainage.",
+      category: "Surgical",
+      stock: "Coming Soon",
     },
   ],
 };
@@ -151,15 +211,48 @@ const inWishlist = (p) => wishlist.some((w) => w.name === p.name);
 const heartSvg = `<svg viewBox="0 0 24 24"><path d="M20.8 8.8C20.8 5.8 18.5 4 16 4c-1.5 0-3 .8-4 2-1-1.2-2.5-2-4-2-2.5 0-4.8 1.8-4.8 4.8C3.2 13.5 8.2 16.5 12 20c3.8-3.5 8.8-6.5 8.8-11.2z"/></svg>`;
 
 function card(p, index) {
-  return `<article class="product-card">
-    <button class="wish-heart${inWishlist(p) ? " active" : ""}" data-wish='${JSON.stringify(p).replace(/'/g, "&#39;")}' aria-label="Add to wishlist">${heartSvg}</button>
+  const data = JSON.stringify(p).replace(/'/g, "&#39;");
+  return `<article class="product-card" data-open-product='${data}' role="button" tabindex="0">
+    <button class="wish-heart${inWishlist(p) ? " active" : ""}" data-wish='${data}' aria-label="Add to wishlist">${heartSvg}</button>
     <div class="product-image"><img src="${p.img}" width="300" height="250" loading="lazy" decoding="async" alt="${p.name}"></div>
     <div class="product-info">
       <h3>${p.name}</h3>
       <div class="price-line"><span class="price">${p.price}</span><span class="price old">${p.old}</span></div>
     </div>
-    <button class="add" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}'>Add to Cart <svg class="bag-icon" viewBox="0 0 24 24"><path d="M6 7h12l1 13.5a2 2 0 0 1-2 2.1H7a2 2 0 0 1-2-2.1L6 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg></button>
+    <button class="add" data-product='${data}'>Add to Cart <svg class="bag-icon" viewBox="0 0 24 24"><path d="M6 7h12l1 13.5a2 2 0 0 1-2 2.1H7a2 2 0 0 1-2-2.1L6 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg></button>
   </article>`;
+}
+
+let currentProduct = null;
+
+function openProductModal(p) {
+  currentProduct = p;
+  const modal = document.getElementById("productModal");
+  document.getElementById("pmImg").src = p.img;
+  document.getElementById("pmImg").alt = p.name;
+  document.getElementById("pmName").textContent = p.name;
+  document.getElementById("pmPrice").textContent = p.price;
+  document.getElementById("pmOld").textContent = p.old || "";
+  document.getElementById("pmDesc").textContent = p.desc || "High-quality medical product from Medico Store.";
+  document.getElementById("pmCategory").textContent = p.category || "Medical";
+  const stockEl = document.getElementById("pmStock");
+  stockEl.textContent = p.stock || "In Stock";
+  stockEl.className = "pm-stock" + (p.stock === "Coming Soon" ? " soon" : "");
+  modal.classList.add("show");
+  document.getElementById("overlay").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeProductModal() {
+  document.getElementById("productModal").classList.remove("show");
+  // only remove overlay if cart/wish not open
+  const cartOpen = document.getElementById("cartPanel").classList.contains("open");
+  const wishOpen = document.getElementById("wishPanel").classList.contains("open");
+  if (!cartOpen && !wishOpen) {
+    document.getElementById("overlay").classList.remove("show");
+  }
+  document.body.style.overflow = "";
+  currentProduct = null;
 }
 function render(id, list) {
   document.getElementById(id).innerHTML = list
@@ -339,6 +432,61 @@ document.addEventListener("click", (e) => {
     save();
     return;
   }
+  // Product detail modal — open when card is clicked (not on buttons)
+  const openCard = e.target.closest("[data-open-product]");
+  if (openCard && !e.target.closest("[data-product]") && !e.target.closest("[data-wish]")) {
+    const p = JSON.parse(openCard.dataset.openProduct.replace(/&#39;/g, "'"));
+    openProductModal(p);
+    return;
+  }
+  // Close product modal
+  if (e.target.closest("#closeProductModal") || e.target.id === "productModal") {
+    closeProductModal();
+    return;
+  }
+  // Buy Now from product modal
+  if (e.target.closest("#pmBuyNow")) {
+    if (currentProduct) {
+      const p = currentProduct;
+      if (!cart.some((c) => c.name === p.name)) {
+        cart.push({ ...p, qty: 1 });
+        save();
+      } else {
+        const item = cart.find((c) => c.name === p.name);
+        if (item && item.qty < MAX_QTY) {
+          item.qty += 1;
+          save();
+        }
+      }
+      closeProductModal();
+      closeWishlist();
+      openCart();
+      toast(`${p.name} added to cart`);
+    }
+    return;
+  }
+  // Add to Cart from product modal — add then close popup
+  if (e.target.closest("#pmAddCart")) {
+    if (currentProduct) {
+      const p = currentProduct;
+      if (!cart.some((c) => c.name === p.name)) {
+        cart.push({ ...p, qty: 1 });
+        save();
+        toast(`${p.name} added to cart`);
+      } else {
+        const item = cart.find((c) => c.name === p.name);
+        if (item && item.qty < MAX_QTY) {
+          item.qty += 1;
+          save();
+          toast(`${p.name} quantity updated`);
+        } else {
+          toast(`${p.name} is already in cart`);
+        }
+      }
+      closeProductModal();
+    }
+    return;
+  }
 });
 // ===== Mobile drawer (hamburger menu) =====
 const mobileDrawer = document.getElementById("mobileDrawer");
@@ -366,7 +514,12 @@ document.getElementById("overlay").onclick = () => {
   closeCart();
   closeWishlist();
   closeMenu();
+  closeProductModal();
 };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeProductModal();
+});
 
 // ===== Mobile bottom navigation =====
 document.getElementById("mobileHome").onclick = (e) => {
@@ -483,19 +636,14 @@ updateWishlist();
       setTimeout(() => loader.remove(), 700);
     }
   };
-  // Keep the logo loader on screen for at least this long (milliseconds).
-  // Increase the number for a longer loader, decrease it for a shorter one.
-  const LOADER_MIN_MS = 1500;
-  const startAfterMin = () => {
-    const wait = Math.max(0, LOADER_MIN_MS - performance.now());
-    setTimeout(start, wait);
-  };
+  // Do not intentionally hold the page behind the loader.
+  // Start the UI as soon as the document is ready; image loading continues independently.
   if (document.readyState === "loading") {
-    addEventListener("DOMContentLoaded", startAfterMin, { once: true });
+    addEventListener("DOMContentLoaded", start, { once: true });
   } else {
-    requestAnimationFrame(startAfterMin);
+    requestAnimationFrame(start);
   }
-  setTimeout(start, LOADER_MIN_MS + 2000); // safety
+  setTimeout(start, 2500); // safety
 
   // ---- Scroll reveal ----
   const io = new IntersectionObserver(
