@@ -69,12 +69,14 @@
           </button>
 
           <!-- Wishlist -->
-          <button class="nav-icon wishlist-btn" aria-label="Wishlist">
+          <button class="nav-icon wishlist-btn" id="wishlistButton" aria-label="Wishlist">
             <svg viewBox="0 0 24 24">
               <path
                 d="M20.8 8.8C20.8 5.8 18.5 4 16 4c-1.5 0-3 .8-4 2-1-1.2-2.5-2-4-2-2.5 0-4.8 1.8-4.8 4.8C3.2 13.5 8.2 16.5 12 20c3.8-3.5 8.8-6.5 8.8-11.2z"
               ></path>
             </svg>
+
+            <b id="wishCount">0</b>
           </button>
 
           <!-- Cart -->
@@ -86,18 +88,6 @@
             </svg>
 
             <b id="cartCount">0</b>
-          </button>
-
-          <!-- Profile -->
-          <button class="profile-button" aria-label="Profile">
-            <span class="profile-circle">
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="8" r="3.2"></circle>
-                <path d="M5.5 20c.8-4 3-6 6.5-6s5.7 2 6.5 6"></path>
-              </svg>
-            </span>
-
-            <span class="profile-arrow">▼</span>
           </button>
         </div>
       </div>
@@ -449,6 +439,13 @@
         <span>Total</span><strong id="cartTotal">$0.00</strong>
       </div>
       <button class="checkout" id="checkout">Place Order</button>
+    </div>
+    <div class="cart-panel wish-panel" id="wishPanel">
+      <div class="cart-head">
+        <h3>My Wishlist</h3>
+        <button id="closeWish">×</button>
+      </div>
+      <div id="wishItems"></div>
     </div>
     <div class="overlay" id="overlay"></div>
 

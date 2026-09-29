@@ -132,9 +132,15 @@ const products = {
 };
 
 let cart = JSON.parse(localStorage.getItem("healthyCart") || "[]");
+// remove duplicates already saved from before
+cart = cart.filter((p, i, arr) => arr.findIndex((x) => x.name === p.name) === i);
+let wishlist = JSON.parse(localStorage.getItem("healthyWishlist") || "[]");
+const inWishlist = (p) => wishlist.some((w) => w.name === p.name);
+const heartSvg = `<svg viewBox="0 0 24 24"><path d="M20.8 8.8C20.8 5.8 18.5 4 16 4c-1.5 0-3 .8-4 2-1-1.2-2.5-2-4-2-2.5 0-4.8 1.8-4.8 4.8C3.2 13.5 8.2 16.5 12 20c3.8-3.5 8.8-6.5 8.8-11.2z"/></svg>`;
 
 function card(p, index) {
   return `<article class="product-card">
+    <button class="wish-heart${inWishlist(p) ? " active" : ""}" data-wish='${JSON.stringify(p).replace(/'/g, "&#39;")}' aria-label="Add to wishlist">${heartSvg}</button>
     <div class="product-image"><img src="${p.img}" alt="${p.name}"></div>
     <div class="product-info">
       <h3>${p.name}</h3>
@@ -173,6 +179,38 @@ function updateCart() {
   );
   document.getElementById("cartTotal").textContent = "$" + total.toFixed(2);
 }
+function saveWishlist() {
+  localStorage.setItem("healthyWishlist", JSON.stringify(wishlist));
+  updateWishlist();
+}
+function updateWishlist() {
+  const badge = document.getElementById("wishCount");
+  badge.textContent = wishlist.length;
+  badge.style.display = wishlist.length ? "flex" : "none";
+  document.querySelectorAll(".wish-heart").forEach((btn) => {
+    const p = JSON.parse(btn.dataset.wish.replace(/&#39;/g, "'"));
+    btn.classList.toggle("active", inWishlist(p));
+  });
+  document.getElementById("wishItems").innerHTML = wishlist.length
+    ? wishlist
+        .map(
+          (p, i) => `
+    <div class="cart-item"><img src="${p.img}" alt=""><div><h4>${p.name}</h4><p>${p.price}</p>
+    <button class="wish-add" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}'>Add to Cart</button>
+    <button class="remove" data-wish-remove="${i}">Remove</button></div></div>
+  `,
+        )
+        .join("")
+    : `<p style="color:#777;text-align:center;padding:30px 0">Your wishlist is empty.</p>`;
+}
+function openWishlist() {
+  document.getElementById("wishPanel").classList.add("open");
+  document.getElementById("overlay").classList.add("show");
+}
+function closeWishlist() {
+  document.getElementById("wishPanel").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
 function toast(msg) {
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -189,9 +227,32 @@ function closeCart() {
 }
 
 document.addEventListener("click", (e) => {
+  const heart = e.target.closest("[data-wish]");
+  if (heart) {
+    const p = JSON.parse(heart.dataset.wish.replace(/&#39;/g, "'"));
+    if (inWishlist(p)) {
+      wishlist = wishlist.filter((w) => w.name !== p.name);
+      toast(`${p.name} removed from wishlist`);
+    } else {
+      wishlist.push(p);
+      toast(`${p.name} added to wishlist`);
+    }
+    saveWishlist();
+    return;
+  }
+  const wrem = e.target.closest("[data-wish-remove]");
+  if (wrem) {
+    wishlist.splice(+wrem.dataset.wishRemove, 1);
+    saveWishlist();
+    return;
+  }
   const add = e.target.closest("[data-product]");
   if (add) {
     const p = JSON.parse(add.dataset.product.replace(/&#39;/g, "'"));
+    if (cart.some((c) => c.name === p.name)) {
+      toast(`${p.name} is already in your cart`);
+      return;
+    }
     cart.push(p);
     save();
     toast(`${p.name} added to cart`);
@@ -223,8 +284,11 @@ mobileDrawer.querySelectorAll("a").forEach((a) => {
 // ===== Cart & overlay =====
 document.getElementById("cartButton").onclick = openCart;
 document.getElementById("closeCart").onclick = closeCart;
+document.getElementById("wishlistButton").onclick = openWishlist;
+document.getElementById("closeWish").onclick = closeWishlist;
 document.getElementById("overlay").onclick = () => {
   closeCart();
+  closeWishlist();
   closeMenu();
 };
 
@@ -278,6 +342,7 @@ document.getElementById("allCategories").onclick = () =>
   toast("Choose a category from the navigation bar");
 
 updateCart();
+updateWishlist();
 
 
 /* ===== Medico Store — Animations (load AFTER script.js) ===== */
