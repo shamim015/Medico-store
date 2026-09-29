@@ -321,25 +321,47 @@ document.getElementById("startShopping").onclick = () =>
 document.getElementById("orderNow").onclick = () =>
   document.getElementById("products").scrollIntoView({ behavior: "smooth" });
 
-function search() {
+function showDefaultNew() {
+  render("newProducts", products.newProducts);
+}
+// live = true while the person is still typing (no scroll, no toast)
+function search(live = false) {
   const q = document.getElementById("searchInput").value.trim().toLowerCase();
   if (!q) {
-    toast("Search for a medicine or medical product");
+    showDefaultNew();
+    if (!live) toast("Search for a medicine or medical product");
     return;
   }
   const all = Object.values(products).flat();
-  const found = all.filter((p) => p.name.toLowerCase().includes(q));
-  document.getElementById("newProducts").innerHTML = found.length
-    ? found.map((p, i) => card(p, i)).join("")
-    : `<p style="grid-column:1/-1;text-align:center;color:#777;padding:50px">No matching product found.</p>`;
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+  // remove duplicate names so the same product is not listed twice
+  const found = all
+    .filter((p) => p.name.toLowerCase().includes(q))
+    .filter((p, i, arr) => arr.findIndex((x) => x.name === p.name) === i);
+  if (!found.length) {
+    // nothing matched: New Products (and Popular Products) stay on screen
+    showDefaultNew();
+    if (!live) {
+      // bring the product cards into view
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+    return;
+  }
+  document.getElementById("newProducts").innerHTML = found
+    .map((p, i) => card(p, i))
+    .join("");
+  if (!live)
+    document.getElementById("products").scrollIntoView({ behavior: "smooth" });
 }
-document.getElementById("searchButton").onclick = search;
+document.getElementById("searchButton").onclick = () => search();
 document.getElementById("searchInput").addEventListener("keydown", (e) => {
   if (e.key === "Enter") search();
 });
-document.getElementById("allCategories").onclick = () =>
-  toast("Choose a category from the navigation bar");
+// clearing the search box brings the normal New Products back
+let searchTimer;
+document.getElementById("searchInput").addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => search(true), 200); // live results while typing
+});
 
 updateCart();
 updateWishlist();
@@ -398,7 +420,9 @@ updateWishlist();
     $(sel).forEach((el, i) => reveal(el, i % perRow, type));
 
   group(".section-title");
-  group(".offer-card");
+  // mobile grids are 2 columns -> stagger per column
+  const cols = () => (matchMedia("(max-width: 768px)").matches ? 2 : 4);
+  group(".offer-card", "", cols());
   group(".big-offer", "left");
   group(".mini-offer", "right", 2);
   group(".stat");
@@ -411,9 +435,9 @@ updateWishlist();
 
   // product cards (also re-rendered by search)
   $(".product-grid").forEach((grid) => {
-    $(".product-card", grid).forEach((c, i) => reveal(c, i % 4));
+    $(".product-card", grid).forEach((c, i) => reveal(c, i % cols()));
     new MutationObserver(() =>
-      $(".product-card", grid).forEach((c, i) => reveal(c, i % 4))
+      $(".product-card", grid).forEach((c, i) => reveal(c, i % cols()))
     ).observe(grid, { childList: true });
   });
 
