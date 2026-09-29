@@ -11,11 +11,13 @@
       rel="stylesheet"
     />
     <script>document.documentElement.classList.add("js")</script>
+    <link rel="preload" as="image" href="assets/hero-doctor.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/hero-doctor.webp" fetchpriority="high" />
     <link rel="stylesheet" href="CSS/style.css" />
   </head>
   <body>
     <div class="page-loader" id="pageLoader">
-      <img src="assets/medico-store-logo.png" alt="Medico Store" />
+      <img src="assets/medico-store-logo.webp" alt="Medico Store" />
       <span class="loader-bar"></span>
     </div>
     <div id="scrollProgress"></div>
@@ -30,7 +32,7 @@
 
         <!-- Logo -->
         <a class="logo" href="#">
-          <img src="assets/medico-store-logo.png" alt="Medico Store" />
+          <img src="assets/medico-store-logo.webp" alt="Medico Store" />
         </a>
 
         <!-- Search -->
@@ -131,21 +133,21 @@
             <button class="hero-button" id="startShopping">
               Start Shopping
               <span><img
-                  src="assets/icon/shopping%20icon.png"
-                  onerror="this.onerror=null;this.src='assets/icon/shopping_icon.png'"
+                  src="assets/icon/shopping-icon.webp"
+                 
                   alt=""
                 /></span>
             </button>
           </div>
         </div>
         <div class="hero-dots"><i></i><i></i><i></i><i></i></div>
-        <img class="hero-doctor" src="assets/hero-doctor.png" alt="" />
+        <img class="hero-doctor" src="assets/hero-doctor.webp" width="700" height="702" fetchpriority="high" decoding="async" alt="" />
       </section>
 
       <section class="offers container">
         <a class="offer-card offer-1" href="#products"
           ><span class="offer-icon"
-            ><img src="assets/icon/icon4.png" alt="" /></span
+            ><img src="assets/icon/icon4.webp" alt="" /></span
           ><span>Get 25% OFF</span
           ><svg
             class="chevron"
@@ -160,7 +162,7 @@
         ></a>
         <a class="offer-card offer-2" href="#products"
           ><span class="offer-icon"
-            ><img src="assets/icon/icon1.png" alt="" /></span
+            ><img src="assets/icon/icon1.webp" alt="" /></span
           ><span>Free Home Delivery</span
           ><svg
             class="chevron"
@@ -175,7 +177,7 @@
         ></a>
         <a class="offer-card offer-3" href="#blog"
           ><span class="offer-icon"
-            ><img src="assets/icon/icon3.png" alt="" /></span
+            ><img src="assets/icon/icon3.webp" alt="" /></span
           ><span>Doctor's Appointment</span
           ><svg
             class="chevron"
@@ -190,7 +192,7 @@
         ></a>
         <a class="offer-card offer-4" href="#blog"
           ><span class="offer-icon"
-            ><img src="assets/icon/icon2.png" alt="" /></span
+            ><img src="assets/icon/icon2.webp" alt="" /></span
           ><span>Health Advice</span
           ><svg
             class="chevron"
@@ -230,7 +232,7 @@
             <div class="old-price">$37.00</div>
             <div class="new-price">$37.00 <small>Including Tax</small></div>
           </div>
-          <img src="assets/promo-garlic.png" alt="Black Garlic Oil" />
+          <img src="assets/promo-garlic.webp" width="509" height="766" loading="lazy" decoding="async" alt="Black Garlic Oil" />
         </div>
         <div class="side-offers">
           <div class="mini-offer">
@@ -239,7 +241,7 @@
               <h3>Dental Care Set for Vivid and Bright Smiles</h3>
               <div class="new-price">$22.90 <small>Including Tax</small></div>
             </div>
-            <img src="assets/promo-toothpaste.png" alt="" />
+            <img src="assets/promo-toothpaste.webp" width="700" height="700" loading="lazy" decoding="async" alt="" />
           </div>
           <div class="mini-offer light">
             <div>
@@ -248,7 +250,7 @@
               <div class="old-price">$37.00</div>
               <div class="new-price">$37.00 <small>Including Tax</small></div>
             </div>
-            <img src="assets/disbeyazlaticiset-2.png" alt="" />
+            <img src="assets/disbeyazlaticiset-2.webp" width="216" height="216" loading="lazy" decoding="async" alt="" />
           </div>
         </div>
       </section>
@@ -290,10 +292,10 @@
             <button id="orderNow">Place An Order Now <span>→</span></button>
           </div>
           <div class="hot-art" aria-hidden="true">
-            <img src="assets/hot-capsules-top.png" alt="" class="hot-layer hot-capsules-top" />
-            <img src="assets/hot-particles.png" alt="" class="hot-layer hot-particles" />
-            <img src="assets/hot-leaves.png" alt="" class="hot-layer hot-leaves" />
-            <img src="assets/hot-capsules-bottom.png" alt="" class="hot-layer hot-capsules-bottom" />
+            <img src="assets/hot-capsules-top.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-capsules-top" />
+            <img src="assets/hot-particles.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-particles" />
+            <img src="assets/hot-leaves.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-leaves" />
+            <img src="assets/hot-capsules-bottom.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-capsules-bottom" />
           </div>
         </div>
       </section>
@@ -302,7 +304,7 @@
         <h2>Our Latest News &amp; Blogs</h2>
         <div class="news-grid container">
           <article class="news-main">
-            <img src="assets/blog-1.jpg" alt="" />
+            <img src="assets/blog-1.webp" loading="lazy" decoding="async" alt="" />
             <div class="news-main-body">
               <div class="meta">
                 <span>Doctor</span><span>24 Dec, 2023</span>
@@ -318,7 +320,7 @@
           </article>
           <div class="news-side">
             <article class="news-row">
-              <img src="assets/blog-2.jpg" alt="" />
+              <img src="assets/blog-2.webp" loading="lazy" decoding="async" alt="" />
               <div>
                 <div class="meta">
                   <span>Doctor</span><span>24 Dec, 2023</span>
@@ -334,7 +336,7 @@
               </div>
             </article>
             <article class="news-row">
-              <img src="assets/blog-3.jpg" alt="" />
+              <img src="assets/blog-3.webp" loading="lazy" decoding="async" alt="" />
               <div>
                 <div class="meta">
                   <span>Doctor</span><span>24 Dec, 2023</span>
@@ -351,7 +353,7 @@
               </div>
             </article>
             <article class="news-row">
-              <img src="assets/blog-4.jpg" alt="" />
+              <img src="assets/blog-4.webp" loading="lazy" decoding="async" alt="" />
               <div>
                 <div class="meta">
                   <span>Doctor</span><span>24 Dec, 2023</span>
@@ -376,7 +378,7 @@
       <div class="sf-top container">
         <div class="sf-brand">
           <a class="sf-logo" href="#" aria-label="Medico Store">
-            <img src="assets/medico-store-logo.png" alt="Medico Store" />
+            <img src="assets/medico-store-logo.webp" alt="Medico Store" />
           </a>
           <p>
             Genuine medicines and healthcare essentials, delivered safely to
@@ -430,9 +432,7 @@
         </div>
       </div>
 
-      <div class="sf-bottom container">
-        <span>© 2023 HEALTHY. All rights reserved.</span>
-        <div class="sf-legal"><a>Terms and Conditions</a><a>Privacy Policy</a></div>
+      <div class="sf-bottom container">    
       </div>
       <div class="sf-credit">© Developed by Shamimur Rahman</div>
     </footer>

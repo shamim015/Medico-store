@@ -4,25 +4,25 @@ const products = {
       name: "Foley Catheter",
       price: "$12.90",
       old: "$24.78",
-      img: "assets/product-catheter.png",
+      img: "assets/product-catheter.webp",
     },
     {
       name: "Thermometer",
       price: "$8.98",
       old: "$24.78",
-      img: "assets/product-thermometer.png",
+      img: "assets/product-thermometer.webp",
     },
     {
       name: "Non-rebreather mask",
       price: "$3.32",
       old: "$24.78",
-      img: "assets/product-mask.png",
+      img: "assets/product-mask.webp",
     },
     {
       name: "Wound Dressing",
       price: "$24.78",
       old: "$24.78",
-      img: "assets/product-dressing.png",
+      img: "assets/product-dressing.webp",
     },
   ],
   popularProducts: [
@@ -30,25 +30,25 @@ const products = {
       name: "Oxygen Mask",
       price: "$2.00",
       old: "$24.78",
-      img: "assets/product-oxygen-mask.png",
+      img: "assets/product-oxygen-mask.webp",
     },
     {
       name: "Surgical Gloves",
       price: "$1.99",
       old: "$24.78",
-      img: "assets/product-gloves.png",
+      img: "assets/product-gloves.webp",
     },
     {
       name: "Medical Mask",
       price: "$0.89",
       old: "$24.78",
-      img: "assets/product-medical-mask.png",
+      img: "assets/product-medical-mask.webp",
     },
     {
       name: "Hand Sanitizer",
       price: "$4.00",
       old: "$24.78",
-      img: "assets/product-sanitizer.png",
+      img: "assets/product-sanitizer.webp",
     },
   ],
   topProducts: [
@@ -56,25 +56,25 @@ const products = {
       name: "Hospital Bed",
       price: "$109.89",
       old: "$24.78",
-      img: "assets/product-bed.png",
+      img: "assets/product-bed.webp",
     },
     {
       name: "Walker Mobility",
       price: "$12.80",
       old: "$24.78",
-      img: "assets/product-walker.png",
+      img: "assets/product-walker.webp",
     },
     {
       name: "Wheelchair",
       price: "$30.00",
       old: "$24.78",
-      img: "assets/product-wheelchair.png",
+      img: "assets/product-wheelchair.webp",
     },
     {
       name: "Crutches",
       price: "$24.78",
       old: "$24.78",
-      img: "assets/product-crutches.png",
+      img: "assets/product-crutches.webp",
     },
   ],
   medicalProducts: [
@@ -82,25 +82,25 @@ const products = {
       name: "Sphygmomanometer",
       price: "$15.09",
       old: "$24.78",
-      img: "assets/product-bp.png",
+      img: "assets/product-bp.webp",
     },
     {
       name: "Digital Stethoscope",
       price: "$29.99",
       old: "$24.78",
-      img: "assets/product-stethoscope.png",
+      img: "assets/product-stethoscope.webp",
     },
     {
       name: "Glucometer",
       price: "$12.08",
       old: "$24.78",
-      img: "assets/product-glucometer.png",
+      img: "assets/product-glucometer.webp",
     },
     {
       name: "Pulse Oximeter",
       price: "$30.00",
       old: "$24.78",
-      img: "assets/product-oximeter.png",
+      img: "assets/product-oximeter.webp",
     },
   ],
   upcomingProducts: [
@@ -108,25 +108,25 @@ const products = {
       name: "Wound Dressing",
       price: "$5.78",
       old: "$24.78",
-      img: "assets/product-dressing.png",
+      img: "assets/product-dressing.webp",
     },
     {
       name: "IV Catheter",
       price: "$2.00",
       old: "$24.78",
-      img: "assets/product-iv-catheter.png",
+      img: "assets/product-iv-catheter.webp",
     },
     {
       name: "Blood Pressure Cuff",
       price: "$24.78",
       old: "$24.78",
-      img: "assets/product-bp-cuff.png",
+      img: "assets/product-bp-cuff.webp",
     },
     {
       name: "Chest Tube",
       price: "$58.56",
       old: "$24.78",
-      img: "assets/product-chest-tube.png",
+      img: "assets/product-chest-tube.webp",
     },
   ],
 };
@@ -153,7 +153,7 @@ const heartSvg = `<svg viewBox="0 0 24 24"><path d="M20.8 8.8C20.8 5.8 18.5 4 16
 function card(p, index) {
   return `<article class="product-card">
     <button class="wish-heart${inWishlist(p) ? " active" : ""}" data-wish='${JSON.stringify(p).replace(/'/g, "&#39;")}' aria-label="Add to wishlist">${heartSvg}</button>
-    <div class="product-image"><img src="${p.img}" alt="${p.name}"></div>
+    <div class="product-image"><img src="${p.img}" width="300" height="250" loading="lazy" decoding="async" alt="${p.name}"></div>
     <div class="product-info">
       <h3>${p.name}</h3>
       <div class="price-line"><span class="price">${p.price}</span><span class="price old">${p.old}</span></div>
@@ -196,7 +196,7 @@ function updateCart() {
     ? cart
         .map(
           (p, i) => `
-    <div class="cart-item"><img src="${p.img}" alt="">
+    <div class="cart-item"><img src="${p.img}" width="80" height="80" loading="lazy" decoding="async" alt="">
       <div class="ci-body">
         <h4>${p.name}</h4>
         <p class="ci-unit">${money(priceOf(p))} each</p>
@@ -250,7 +250,7 @@ function updateWishlist() {
     ? wishlist
         .map(
           (p, i) => `
-    <div class="cart-item"><img src="${p.img}" alt=""><div><h4>${p.name}</h4><p>${p.price}</p>
+    <div class="cart-item"><img src="${p.img}" width="80" height="80" loading="lazy" decoding="async" alt=""><div><h4>${p.name}</h4><p>${p.price}</p>
     <button class="wish-add" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}'>Add to Cart</button>
     <button class="remove" data-wish-remove="${i}">Remove</button></div></div>
   `,
@@ -483,12 +483,14 @@ updateWishlist();
       setTimeout(() => loader.remove(), 700);
     }
   };
-  const minWait = new Promise((r) => setTimeout(r, 700));
-  const loaded = new Promise((r) =>
-    document.readyState === "complete" ? r() : addEventListener("load", r)
-  );
-  Promise.all([minWait, loaded]).then(start);
-  setTimeout(start, 3500); // safety
+  // Do not intentionally hold the page behind the loader.
+  // Start the UI as soon as the document is ready; image loading continues independently.
+  if (document.readyState === "loading") {
+    addEventListener("DOMContentLoaded", start, { once: true });
+  } else {
+    requestAnimationFrame(start);
+  }
+  setTimeout(start, 2500); // safety
 
   // ---- Scroll reveal ----
   const io = new IntersectionObserver(

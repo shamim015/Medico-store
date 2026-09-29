@@ -4088,3 +4088,60 @@ footer.site-footer {
     margin-bottom: -2px !important;
   }
 }
+
+/* ===== Footer (mobile): tighter spacing at the bottom ===== */
+@media (max-width: 768px) {
+  .site-footer .sf-top {
+    padding-bottom: 14px;
+  }
+  .site-footer .sf-bottom {
+    gap: 4px;
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+  .site-footer .sf-credit {
+    padding: 4px 16px 10px;
+  }
+}
+
+/* ===== Performance optimizations ===== */
+img {
+  content-visibility: auto;
+}
+
+/* Keep below-the-fold sections from consuming rendering time before they are needed. */
+.products-section,
+.featured-offers,
+.stats,
+.blog-section,
+.hot-offer,
+.hot-offer-section,
+.hot-banner {
+  content-visibility: auto;
+  contain-intrinsic-size: 700px;
+}
+
+@media (max-width: 768px) {
+  /* Decorative motion is expensive on mobile and is not needed for usability. */
+  .hero-bg,
+  .hero::before,
+  .hero::after,
+  .hot-art .hot-layer {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg,
+  .hero::before,
+  .hero::after,
+  .hot-art .hot-layer {
+    animation: none !important;
+  }
+}
+
+/* ===== Performance optimizations ===== */
+img { content-visibility: auto; }
+.products-section, .featured-offers, .stats, .blog-section, .hot-offer, .hot-offer-section, .hot-banner { content-visibility: auto; contain-intrinsic-size: 700px; }
+@media (max-width: 768px) { .hero-bg, .hero::before, .hero::after, .hot-art .hot-layer { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .hero-bg, .hero::before, .hero::after, .hot-art .hot-layer { animation: none !important; } }
