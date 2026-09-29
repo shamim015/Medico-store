@@ -429,14 +429,28 @@
 
     <div class="cart-panel" id="cartPanel">
       <div class="cart-head">
-        <h3>Your Cart</h3>
-        <button id="closeCart">×</button>
+        <h3>Your Cart <span class="cart-head-count" id="cartHeadCount"></span></h3>
+        <button id="closeCart" aria-label="Close cart">×</button>
       </div>
+      <div class="ship-bar" id="shipBar"></div>
       <div id="cartItems"></div>
-      <div class="cart-total">
-        <span>Total</span><strong id="cartTotal">$0.00</strong>
+      <div class="cart-footer" id="cartFooter">
+        <div class="promo-row" id="promoRow">
+          <input id="promoInput" type="text" placeholder="Promo code" autocomplete="off" />
+          <button id="promoApply">Apply</button>
+        </div>
+        <div class="promo-msg" id="promoMsg"></div>
+        <div class="sum-line"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+        <div class="sum-line discount" id="discountLine" style="display:none">
+          <span>Discount</span><span id="cartDiscount">-$0.00</span>
+        </div>
+        <div class="sum-line"><span>Delivery</span><span id="cartDelivery">$0.00</span></div>
+        <div class="cart-total">
+          <span>Total</span><strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="checkout" id="checkout">Place Order</button>
+        <button class="clear-cart" id="clearCart">Clear cart</button>
       </div>
-      <button class="checkout" id="checkout">Place Order</button>
     </div>
     <div class="cart-panel wish-panel" id="wishPanel">
       <div class="cart-head">

@@ -132,8 +132,20 @@ const products = {
 };
 
 let cart = JSON.parse(localStorage.getItem("healthyCart") || "[]");
-// remove duplicates already saved from before
-cart = cart.filter((p, i, arr) => arr.findIndex((x) => x.name === p.name) === i);
+// remove duplicates already saved from before, make sure every item has a quantity
+cart = cart
+  .filter((p, i, arr) => arr.findIndex((x) => x.name === p.name) === i)
+  .map((p) => ({ ...p, qty: p.qty || 1 }));
+
+// ===== Cart settings (change these to match your store) =====
+const FREE_DELIVERY_MIN = 50; // free delivery above this amount
+const DELIVERY_FEE = 4.99;
+const PROMO_CODES = { MEDICO10: 10, HEALTH25: 25 }; // code -> % off
+const MAX_QTY = 10;
+const money = (n) => "$" + n.toFixed(2);
+const priceOf = (p) => parseFloat(String(p.price).replace("$", "")) || 0;
+let promo = localStorage.getItem("healthyPromo") || "";
+if (!PROMO_CODES[promo]) promo = "";
 let wishlist = JSON.parse(localStorage.getItem("healthyWishlist") || "[]");
 const inWishlist = (p) => wishlist.some((w) => w.name === p.name);
 const heartSvg = `<svg viewBox="0 0 24 24"><path d="M20.8 8.8C20.8 5.8 18.5 4 16 4c-1.5 0-3 .8-4 2-1-1.2-2.5-2-4-2-2.5 0-4.8 1.8-4.8 4.8C3.2 13.5 8.2 16.5 12 20c3.8-3.5 8.8-6.5 8.8-11.2z"/></svg>`;
@@ -160,24 +172,81 @@ function save() {
   localStorage.setItem("healthyCart", JSON.stringify(cart));
   updateCart();
 }
+function cartTotals() {
+  const subtotal = cart.reduce((sum, p) => sum + priceOf(p) * p.qty, 0);
+  const pct = PROMO_CODES[promo] || 0;
+  const discount = (subtotal * pct) / 100;
+  const after = subtotal - discount;
+  const delivery = !cart.length || after >= FREE_DELIVERY_MIN ? 0 : DELIVERY_FEE;
+  return { subtotal, pct, discount, after, delivery, total: after + delivery };
+}
 function updateCart() {
-  document.getElementById("cartCount").textContent = cart.length;
+  const count = cart.reduce((n, p) => n + p.qty, 0);
+  document.getElementById("cartCount").textContent = count;
   const mobileBadge = document.getElementById("cartCountMobile");
-  if (mobileBadge) mobileBadge.textContent = cart.length;
+  if (mobileBadge) mobileBadge.textContent = count;
+  document.getElementById("cartHeadCount").textContent = count
+    ? `(${count} ${count === 1 ? "item" : "items"})`
+    : "";
+
+  const t = cartTotals();
+
+  // free-delivery progress
+  const ship = document.getElementById("shipBar");
+  if (!cart.length) {
+    ship.style.display = "none";
+  } else {
+    ship.style.display = "block";
+    const left = FREE_DELIVERY_MIN - t.after;
+    const w = Math.min(100, (t.after / FREE_DELIVERY_MIN) * 100);
+    ship.innerHTML =
+      left > 0
+        ? `<p>Add <b>${money(left)}</b> more for <b>free delivery</b></p><div class="ship-track"><i style="width:${w}%"></i></div>`
+        : `<p class="ok"><b>You've unlocked free delivery</b></p><div class="ship-track full"><i style="width:100%"></i></div>`;
+  }
+
+  // items
   document.getElementById("cartItems").innerHTML = cart.length
     ? cart
         .map(
           (p, i) => `
-    <div class="cart-item"><img src="${p.img}" alt=""><div><h4>${p.name}</h4><p>${p.price}</p><button class="remove" data-remove="${i}">Remove</button></div></div>
+    <div class="cart-item"><img src="${p.img}" alt="">
+      <div class="ci-body">
+        <h4>${p.name}</h4>
+        <p class="ci-unit">${money(priceOf(p))} each</p>
+        <div class="ci-row">
+          <div class="qty">
+            <button data-qty="${i}" data-dir="-1" aria-label="Decrease quantity"${p.qty <= 1 ? " disabled" : ""}>−</button>
+            <span>${p.qty}</span>
+            <button data-qty="${i}" data-dir="1" aria-label="Increase quantity"${p.qty >= MAX_QTY ? " disabled" : ""}>+</button>
+          </div>
+          <strong class="ci-line">${money(priceOf(p) * p.qty)}</strong>
+        </div>
+        <div class="ci-actions">
+          <button class="remove trash-btn" data-remove="${i}" aria-label="Remove item" title="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button>
+        </div>
+      </div>
+    </div>
   `,
         )
         .join("")
-    : `<p style="color:#777;text-align:center;padding:30px 0">Your cart is empty.</p>`;
-  const total = cart.reduce(
-    (sum, p) => sum + parseFloat(p.price.replace("$", "")),
-    0,
-  );
-  document.getElementById("cartTotal").textContent = "$" + total.toFixed(2);
+    : `<div class="cart-empty"><p>Your cart is empty.</p><button class="continue-shop" data-shop>Continue shopping</button></div>`;
+
+  // footer / summary
+  document.getElementById("cartFooter").style.display = cart.length ? "block" : "none";
+  document.getElementById("cartSubtotal").textContent = money(t.subtotal);
+  document.getElementById("discountLine").style.display = t.pct ? "flex" : "none";
+  document.getElementById("cartDiscount").textContent = "-" + money(t.discount);
+  document.getElementById("cartDelivery").textContent = t.delivery
+    ? money(t.delivery)
+    : "Free";
+  document.getElementById("cartTotal").textContent = money(t.total);
+
+  // promo
+  document.getElementById("promoRow").style.display = promo ? "none" : "flex";
+  document.getElementById("promoMsg").innerHTML = promo
+    ? `<span class="ok">${promo} applied · ${t.pct}% off</span> <button data-promo-remove>Remove</button>`
+    : "";
 }
 function saveWishlist() {
   localStorage.setItem("healthyWishlist", JSON.stringify(wishlist));
@@ -246,16 +315,36 @@ document.addEventListener("click", (e) => {
     saveWishlist();
     return;
   }
+  const q = e.target.closest("[data-qty]");
+  if (q) {
+    const item = cart[+q.dataset.qty];
+    if (item) {
+      item.qty = Math.min(MAX_QTY, Math.max(1, item.qty + +q.dataset.dir));
+      save();
+    }
+    return;
+  }
+  if (e.target.closest("[data-promo-remove]")) {
+    promo = "";
+    localStorage.removeItem("healthyPromo");
+    updateCart();
+    return;
+  }
+  if (e.target.closest("[data-shop]")) {
+    closeCart();
+    document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    return;
+  }
   const add = e.target.closest("[data-product]");
   if (add) {
     const p = JSON.parse(add.dataset.product.replace(/&#39;/g, "'"));
-    if (cart.some((c) => c.name === p.name)) {
-      toast(`${p.name} is already in your cart`);
-      return;
+    if (!cart.some((c) => c.name === p.name)) {
+      cart.push({ ...p, qty: 1 });
+      save();
     }
-    cart.push(p);
-    save();
-    toast(`${p.name} added to cart`);
+    // open the cart pop-up so the person sees the item right away
+    closeWishlist();
+    openCart();
     return;
   }
   const rem = e.target.closest("[data-remove]");
@@ -309,6 +398,35 @@ document.getElementById("mobileCart").onclick = (e) => {
 document.getElementById("mobileAccount").onclick = (e) => {
   e.preventDefault();
   toast("Account page coming soon");
+};
+function applyPromo() {
+  const input = document.getElementById("promoInput");
+  const code = input.value.trim().toUpperCase();
+  const msg = document.getElementById("promoMsg");
+  if (!code) {
+    msg.innerHTML = `<span class="err">Enter a promo code</span>`;
+    return;
+  }
+  if (PROMO_CODES[code]) {
+    promo = code;
+    localStorage.setItem("healthyPromo", code);
+    input.value = "";
+    updateCart();
+    toast(`Promo ${code} applied`);
+  } else {
+    msg.innerHTML = `<span class="err">Invalid promo code</span>`;
+  }
+}
+document.getElementById("promoApply").onclick = applyPromo;
+document.getElementById("promoInput").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") applyPromo();
+});
+document.getElementById("clearCart").onclick = () => {
+  if (!cart.length) return;
+  if (confirm("Remove all items from your cart?")) {
+    cart = [];
+    save();
+  }
 };
 document.getElementById("checkout").onclick = () =>
   toast(
