@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HEALTHY — Pharmacy & Medicine Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>document.documentElement.classList.add("js")</script>
+    <link rel="preload" as="image" href="assets/hero-doctor.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/hero-doctor.webp" fetchpriority="high" />
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <div class="page-loader" id="pageLoader">
+      <img src="assets/medico-store-logo.webp" alt="Medico Store" />
+      <span class="loader-bar"></span>
+    </div>
+    <div id="scrollProgress"></div>
+    <button id="toTop" aria-label="Back to top">↑</button>
+
+    <header class="navbar">
+      <div class="nav-top">
+        <!-- Mobile menu toggle -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Logo -->
+        <a class="logo" href="#">
+          <img src="assets/medico-store-logo.webp" alt="Medico Store" />
+        </a>
+
+        <!-- Search -->
+        <div class="search-box">
+          <div class="search-input-wrap">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search medicine, medical products"
+            />
+          </div>
+
+          <button class="search-button" id="searchButton" aria-label="Search">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="6"></circle>
+              <line x1="16" y1="16" x2="21" y2="21"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Right icons -->
+        <div class="account-actions">
+          <!-- Mobile search icon -->
+          <button class="nav-icon search-toggle" id="searchToggle" aria-label="Search">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="6"></circle>
+              <line x1="16" y1="16" x2="21" y2="21"></line>
+            </svg>
+          </button>
+
+          <!-- Wishlist -->
+          <button class="nav-icon wishlist-btn" id="wishlistButton" aria-label="Wishlist">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20.8 8.8C20.8 5.8 18.5 4 16 4c-1.5 0-3 .8-4 2-1-1.2-2.5-2-4-2-2.5 0-4.8 1.8-4.8 4.8C3.2 13.5 8.2 16.5 12 20c3.8-3.5 8.8-6.5 8.8-11.2z"
+              ></path>
+            </svg>
+
+            <b id="wishCount">0</b>
+          </button>
+
+          <!-- Cart -->
+          <button class="nav-icon cart-icon" id="cartButton" aria-label="Cart">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 5h2l2.2 10h9.6L19 8H6"></path>
+              <circle cx="9" cy="19" r="1.2"></circle>
+              <circle cx="17" cy="19" r="1.2"></circle>
+            </svg>
+
+            <b id="cartCount">0</b>
+          </button>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <nav class="category-nav">
+        <a href="#pain">Pain Relief</a>
+        <a href="#cold">Cold and Flu</a>
+        <a href="#diabetes">Diabetes Care</a>
+        <a href="#digestive">Digestive Health</a>
+        <a href="#firstaid">First Aid</a>
+        <a href="#skincare">Skin Care</a>
+        <a href="#baby">Child and Baby Care</a>
+        <a href="#heart">Heart Health</a>
+        <a href="#eye">Eye and Ear Care</a>
+        <a href="#respiratory">Respiratory Health</a>
+      </nav>
+    </header>
+
+    <!-- Mobile category drawer -->
+    <aside class="mobile-drawer" id="mobileDrawer">
+      <div class="drawer-head">
+        <h3>All Categories</h3>
+      </div>
+      <a href="#pain">Pain Relief</a>
+      <a href="#cold">Cold and Flu</a>
+      <a href="#diabetes">Diabetes Care</a>
+      <a href="#digestive">Digestive Health</a>
+      <a href="#firstaid">First Aid</a>
+      <a href="#skincare">Skin Care</a>
+      <a href="#baby">Child and Baby Care</a>
+      <a href="#heart">Heart Health</a>
+      <a href="#eye">Eye and Ear Care</a>
+      <a href="#respiratory">Respiratory Health</a>
+    </aside>
+
+    <main>
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <h1>Your Prescription for Affordable Health Solutions!</h1>
+            <p>
+              Elevate your health journey with exclusive discounts and
+              unparalleled convenience. Your path to well-being starts here,
+              where every purchase is a prescription for savings.
+            </p>
+            <button class="hero-button" id="startShopping">
+              Start Shopping
+              <span><img
+                  src="assets/icon/shopping-icon.webp"
+                 
+                  alt=""
+                /></span>
+            </button>
+          </div>
+        </div>
+        <div class="hero-dots"><i></i><i></i><i></i><i></i></div>
+        <img class="hero-doctor" src="assets/hero-doctor.webp" width="700" height="702" fetchpriority="high" decoding="async" alt="" />
+      </section>
+
+      <section class="offers container">
+        <a class="offer-card offer-1" href="#products"
+          ><span class="offer-icon"
+            ><img src="assets/icon/icon4.webp" alt="" /></span
+          ><span>Get 25% OFF</span
+          ><svg
+            class="chevron"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 5l7 7-7 7"></path></svg
+        ></a>
+        <a class="offer-card offer-2" href="#products"
+          ><span class="offer-icon"
+            ><img src="assets/icon/icon1.webp" alt="" /></span
+          ><span>Free Home Delivery</span
+          ><svg
+            class="chevron"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 5l7 7-7 7"></path></svg
+        ></a>
+        <a class="offer-card offer-3" href="#blog"
+          ><span class="offer-icon"
+            ><img src="assets/icon/icon3.webp" alt="" /></span
+          ><span>Doctor's Appointment</span
+          ><svg
+            class="chevron"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 5l7 7-7 7"></path></svg
+        ></a>
+        <a class="offer-card offer-4" href="#blog"
+          ><span class="offer-icon"
+            ><img src="assets/icon/icon2.webp" alt="" /></span
+          ><span>Health Advice</span
+          ><svg
+            class="chevron"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 5l7 7-7 7"></path></svg
+        ></a>
+      </section>
+
+      <section class="products-section container" id="products">
+        <div class="section-title">
+          <h2>New Products</h2>
+          <a href="#products">View All <span>→</span></a>
+        </div>
+        <div class="product-grid" id="newProducts"></div>
+      </section>
+
+      <section class="products-section container">
+        <div class="section-title">
+          <h2>Popular Products</h2>
+          <a href="#products">View All <span>→</span></a>
+        </div>
+        <div class="product-grid" id="popularProducts"></div>
+      </section>
+
+      <section class="featured-offers container">
+        <div class="big-offer">
+          <div class="offer-left">
+            <span class="discount">25% OFF</span>
+            <h3>BLACK GARLIC OIL</h3>
+            <h4>Stronger and Thicker Hair With Black Garlic Oil.</h4>
+            <div class="old-price">$37.00</div>
+            <div class="new-price">$37.00 <small>Including Tax</small></div>
+          </div>
+          <img src="assets/promo-garlic.webp" width="509" height="766" loading="lazy" decoding="async" alt="Black Garlic Oil" />
+        </div>
+        <div class="side-offers">
+          <div class="mini-offer">
+            <div>
+              <span class="discount">25% OFF</span>
+              <h3>Dental Care Set for Vivid and Bright Smiles</h3>
+              <div class="new-price">$22.90 <small>Including Tax</small></div>
+            </div>
+            <img src="assets/promo-toothpaste.webp" width="700" height="700" loading="lazy" decoding="async" alt="" />
+          </div>
+          <div class="mini-offer light">
+            <div>
+              <span class="discount">25% OFF</span>
+              <h3>BANANA FLAVOURED TOOTHPASTE</h3>
+              <div class="old-price">$37.00</div>
+              <div class="new-price">$37.00 <small>Including Tax</small></div>
+            </div>
+            <img src="assets/disbeyazlaticiset-2.webp" width="216" height="216" loading="lazy" decoding="async" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section class="products-section container">
+        <div class="section-title">
+          <h2>Top Products</h2>
+          <a href="#products">View All <span>→</span></a>
+        </div>
+        <div class="product-grid" id="topProducts"></div>
+      </section>
+
+      <section class="products-section container">
+        <div class="section-title">
+          <h2>Medical Products</h2>
+          <a href="#products">View All <span>→</span></a>
+        </div>
+        <div class="product-grid" id="medicalProducts"></div>
+      </section>
+
+      <section class="products-section container upcoming">
+        <div class="section-title">
+          <h2>Upcoming Products</h2>
+          <a href="#products">View All <span>→</span></a>
+        </div>
+        <div class="product-grid" id="upcomingProducts"></div>
+      </section>
+
+      <section class="hot-offer">
+        <div class="hot-inner container">
+          <div class="hot-copy">
+            <span>Today's Hot Offer</span>
+            <h2>Unlock 50% Off on Essential Medicines!</h2>
+            <p>
+              Embrace wellness without breaking the bank! Enjoy a generous 25%
+              discount on a wide range of vital medicines at our online
+              pharmacy. Your health matters, and so does your budget.
+            </p>
+            <button id="orderNow">Place An Order Now <span>→</span></button>
+          </div>
+          <div class="hot-art" aria-hidden="true">
+            <img src="assets/hot-capsules-top.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-capsules-top" />
+            <img src="assets/hot-particles.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-particles" />
+            <img src="assets/hot-leaves.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-leaves" />
+            <img src="assets/hot-capsules-bottom.webp" loading="lazy" decoding="async" alt="" class="hot-layer hot-capsules-bottom" />
+          </div>
+        </div>
+      </section>
+
+      <section class="news">
+        <h2>Our Latest News &amp; Blogs</h2>
+        <div class="news-grid container">
+          <article class="news-main">
+            <img src="assets/blog-1.webp" loading="lazy" decoding="async" alt="" />
+            <div class="news-main-body">
+              <div class="meta">
+                <span>Doctor</span><span>24 Dec, 2023</span>
+              </div>
+              <h3>In this section, we delve into various aspects of health</h3>
+              <p>
+                Explore the world of medical specialties through our blog's
+                spotlight feature. From cardiology to pediatrics, we share
+                in-depth articles written by our expert physicians.
+              </p>
+              <a href="#blog">Read More</a>
+            </div>
+          </article>
+          <div class="news-side">
+            <article class="news-row">
+              <img src="assets/blog-2.webp" loading="lazy" decoding="async" alt="" />
+              <div>
+                <div class="meta">
+                  <span>Doctor</span><span>24 Dec, 2023</span>
+                </div>
+                <h3>
+                  Discover a treasure trove of practical tips for enhancing
+                </h3>
+                <p>
+                  From nutrition advice to exercise routines, we're here to
+                  support your journey toward a healthier
+                </p>
+                <a href="#blog">Read More</a>
+              </div>
+            </article>
+            <article class="news-row">
+              <img src="assets/blog-3.webp" loading="lazy" decoding="async" alt="" />
+              <div>
+                <div class="meta">
+                  <span>Doctor</span><span>24 Dec, 2023</span>
+                </div>
+                <h3>
+                  Our patients' journeys are filled with courage, resilience,
+                  and triumph.
+                </h3>
+                <p>
+                  In this section, we share inspiring narratives of individuals
+                  who have overcome health challenges.
+                </p>
+                <a href="#blog">Read More</a>
+              </div>
+            </article>
+            <article class="news-row">
+              <img src="assets/blog-4.webp" loading="lazy" decoding="async" alt="" />
+              <div>
+                <div class="meta">
+                  <span>Doctor</span><span>24 Dec, 2023</span>
+                </div>
+                <h3>
+                  From organizing health fairs to partnering with local
+                  organizations
+                </h3>
+                <p>
+                  Find out how you can participate in community events and
+                  contribute to the health.
+                </p>
+                <a href="#blog">Read More</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="sf-top container">
+        <div class="sf-brand">
+          <a class="sf-logo" href="#" aria-label="Medico Store">
+            <img src="assets/medico-store-logo.webp" alt="Medico Store" />
+          </a>
+          <p>
+            Genuine medicines and healthcare essentials, delivered safely to
+            your door.
+          </p>
+          <div class="sf-social">
+            <button type="button" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </button>
+            <button type="button" aria-label="X">
+              <svg viewBox="0 0 24 24"><path d="M4 4l11.7 16H20L8.3 4z"/><path d="M4 20l6.8-6.8M13.2 10.8L20 4"/></svg>
+            </button>
+            <button type="button" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+            </button>
+            <button type="button" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="sf-col">
+          <h4>Quick Links</h4>
+          <a>Home</a><a>About</a><a>Services</a><a>Careers</a><a>Contact</a>
+        </div>
+        <div class="sf-col">
+          <h4>Specialties</h4>
+          <a>Anesthesiology</a><a>Psychiatry</a><a>General surgery</a
+          ><a>Family medicine</a><a>Pediatrics</a>
+        </div>
+        <div class="sf-col">
+          <h4>Services</h4>
+          <a>Medical</a><a>Operation</a><a>Laboratory</a><a>ICU</a
+          ><a>Patient Ward</a>
+        </div>
+
+        <div class="sf-col sf-contact">
+          <h4>Contact Us</h4>
+          <p>
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>123 Road, Dhaka, Bangladesh</span>
+          </p>
+          <p>
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+88017010767000</span>
+          </p>
+          <p>
+            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span>sajiburdemo121@gmail.com</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="sf-bottom container">    
+      </div>
+      <div class="sf-credit">© Developed by Shamimur Rahman</div>
+    </footer>
+
+    <div class="cart-panel" id="cartPanel">
+      <div class="cart-head">
+        <h3>Your Cart <span class="cart-head-count" id="cartHeadCount"></span></h3>
+        <button id="closeCart" aria-label="Close cart">×</button>
+      </div>
+      <div id="cartItems"></div>
+      <div class="cart-footer" id="cartFooter">
+        <div class="promo-row" id="promoRow">
+          <input id="promoInput" type="text" placeholder="Promo code" autocomplete="off" />
+          <button id="promoApply">Apply</button>
+        </div>
+        <div class="promo-msg" id="promoMsg"></div>
+        <div class="sum-line"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+        <div class="sum-line discount" id="discountLine" style="display:none">
+          <span>Discount</span><span id="cartDiscount">-$0.00</span>
+        </div>
+        <div class="sum-line"><span>Delivery</span><span id="cartDelivery">$0.00</span></div>
+        <div class="cart-total">
+          <span>Total</span><strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="checkout" id="checkout">Place Order</button>
+      </div>
+    </div>
+    <div class="cart-panel wish-panel" id="wishPanel">
+      <div class="cart-head">
+        <h3>My Wishlist</h3>
+        <button id="closeWish">×</button>
+      </div>
+      <div id="wishItems"></div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Mobile bottom navigation -->
+    <nav class="mobile-nav">
+      <a href="#" class="active" id="mobileHome">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 11l9-8 9 8"></path>
+          <path d="M5 10v10h14V10"></path>
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="#" id="mobileSearch">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="6"></circle>
+          <line x1="16" y1="16" x2="21" y2="21"></line>
+        </svg>
+        <span>Search</span>
+      </a>
+      <a href="#" id="mobileCart">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 5h2l2.2 10h9.6L19 8H6"></path>
+          <circle cx="9" cy="19" r="1.2"></circle>
+          <circle cx="17" cy="19" r="1.2"></circle>
+        </svg>
+        <span>Cart</span>
+        <b class="badge" id="cartCountMobile">0</b>
+      </a>
+      <a href="#" id="mobileAccount">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="3.2"></circle>
+          <path d="M5.5 20c.8-4 3-6 6.5-6s5.7 2 6.5 6"></path>
+        </svg>
+        <span>Account</span>
+      </a>
+    </nav>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="JS/script.js"></script>
+  </body>
+</html>
