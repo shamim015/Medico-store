@@ -3462,3 +3462,53 @@ html, body { overflow-x: clip; max-width: 100%; }
     margin-left: 6px;
   }
 }
+
+/* ===== Mobile: bigger doctor image, hero height unchanged ===== */
+@media (max-width: 768px) {
+  .hero {
+    --dh: clamp(210px, 58vw, 340px); /* previous image height */
+  }
+  .hero-doctor {
+    height: calc(var(--dh) * 1.3) !important;
+    /* pull the extra height upward so the hero section stays the same size */
+    margin: calc(var(--dh) * -0.3) 6px -2px 0 !important;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3; /* text & button stay above the image */
+  }
+}
+
+/* ===== Mobile: smaller hero heading & button ===== */
+@media (max-width: 768px) {
+  .hero-copy h1 {
+    font-size: clamp(23px, 6.8vw, 32px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.4px;
+    height: auto !important;
+  }
+  .hero-button {
+    height: 40px !important;
+    padding: 0 18px !important;
+    margin-top: 18px !important;
+    font-size: 13.5px !important;
+    border-radius: 9px !important;
+  }
+}
+
+/* ===== Hero button icon (shopping bag image) ===== */
+.hero-button span {
+  display: inline-flex;
+  align-items: center;
+}
+.hero-button span img {
+  width: 34px;
+  height: 34px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* white icon */
+}
+@media (max-width: 768px) {
+  .hero-button span { margin-left: 6px; }
+  .hero-button span img { width: 28px; height: 28px; }
+}
