@@ -351,7 +351,8 @@ function closeMenu() {
   document.getElementById("overlay").classList.remove("show");
 }
 document.getElementById("menuToggle").onclick = openMenu;
-document.getElementById("closeMenu").onclick = closeMenu;
+const closeMenuBtn = document.getElementById("closeMenu");
+if (closeMenuBtn) closeMenuBtn.onclick = closeMenu;
 mobileDrawer.querySelectorAll("a").forEach((a) => {
   a.addEventListener("click", closeMenu);
 });
@@ -528,7 +529,7 @@ updateWishlist();
   reveal($(".news > h2")[0]);
   reveal($(".news-main")[0], 0, "left");
   group(".news-row", "right", 3);
-  group(".footer-col", "", 5);
+  group(".sf-col", "", 5);
 
   // product cards (also re-rendered by search)
   $(".product-grid").forEach((grid) => {

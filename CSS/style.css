@@ -3874,44 +3874,217 @@ html, body { overflow-x: clip; max-width: 100%; }
   #cartPanel.open { right: 0 !important; }
 }
 
-/* ===== Footer: developer credit + no extra white space below footer ===== */
-.footer-credit {
-  text-align: center;
-  font-size: 13px;
-  color: #cfdccf;
-  padding: 10px 20px 16px;
-}
+/* ===== Mobile: no reserved space under the footer (bottom tab bar is hidden) ===== */
 @media (max-width: 768px) {
-  /* bottom tab bar is hidden, so no reserved space is needed under the footer */
   body { padding-bottom: 0 !important; }
-  .footer-credit { font-size: 12px; padding: 4px 16px 20px; }
 }
 
-/* ===== Mobile: compact footer ===== */
+/* ===== Mobile drawer: no white strip on top, no close button ===== */
 @media (max-width: 768px) {
-  footer { padding-bottom: 0 !important; }
-  footer .footer-main {
-    padding-top: 24px !important;
-    padding-bottom: 0 !important;
-    gap: 16px 12px !important;
+  .mobile-drawer { padding-top: 0 !important; }
+  .mobile-drawer .drawer-head {
+    padding: calc(20px + env(safe-area-inset-top, 0px)) 20px 18px;
   }
-  footer .footer-col { gap: 6px !important; }
-  footer .footer-col h3 { font-size: 14.5px; margin-bottom: 2px !important; }
-  footer .footer-col a,
-  footer .footer-col p { font-size: 12.5px; line-height: 1.3; }
-  footer .social-icons span { width: 28px; height: 28px; font-size: 12px; }
+}
 
-  /* copyright + links in a tight wrapped row instead of 3 stacked lines */
-  footer .footer-bottom {
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 2px 14px !important;
-    padding: 10px 0 4px !important;
-    margin-top: 12px;
-    font-size: 11.5px;
+
+/* ============================================================
+   FOOTER (redesigned)
+============================================================ */
+footer.site-footer {
+  height: auto;
+  margin-top: 0;
+  padding: 0;
+  background: #2b4429;
+  color: #cfdccf;
+  font-size: 14px;
+  border-top: 3px solid #28a745;
+}
+.site-footer .sf-top {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  padding-top: 56px;
+  padding-bottom: 44px;
+}
+.site-footer .sf-logo img {
+  display: block;
+  height: 44px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+.site-footer .sf-brand p {
+  margin: 16px 0 20px;
+  max-width: 340px;
+  line-height: 1.65;
+  color: #b9cbb9;
+}
+.site-footer .sf-social { display: flex; gap: 10px; }
+.site-footer .sf-social button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.site-footer .sf-social svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.site-footer .sf-social button:hover {
+  background: #28a745;
+  border-color: #28a745;
+  transform: translateY(-3px);
+}
+.site-footer .sf-col { display: flex; flex-direction: column; }
+.site-footer .sf-col h4 {
+  position: relative;
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #fff;
+}
+.site-footer .sf-col h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: #28a745;
+}
+.site-footer .sf-col > a {
+  width: fit-content;
+  margin-bottom: 11px;
+  color: #cfdccf;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+.site-footer .sf-col > a:hover { color: #8be07a; transform: translateX(4px); }
+.site-footer .sf-contact p {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 13px;
+  line-height: 1.5;
+  color: #cfdccf;
+}
+.site-footer .sf-contact svg {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  fill: none;
+  stroke: #6fd08a;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.site-footer .sf-contact span { min-width: 0; overflow-wrap: anywhere; }
+.site-footer .sf-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 18px;
+  padding-bottom: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 13px;
+  color: #b9cbb9;
+}
+.site-footer .sf-legal { display: flex; gap: 22px; }
+.site-footer .sf-legal a { cursor: pointer; transition: color 0.2s; }
+.site-footer .sf-legal a:hover { color: #8be07a; }
+.site-footer .sf-credit {
+  padding: 4px 20px 18px;
+  text-align: center;
+  font-size: 12.5px;
+  color: #9db39d;
+}
+
+@media (max-width: 1024px) {
+  .site-footer .sf-top {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px 28px;
   }
-  footer .footer-bottom > span:first-child { flex: 0 0 100%; }
-  footer .footer-credit { padding: 2px 16px 12px; font-size: 11.5px; }
+  .site-footer .sf-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 768px) {
+  .site-footer .sf-top {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px 12px;
+    padding-top: 32px;
+    padding-bottom: 26px;
+  }
+  .site-footer .sf-brand { grid-column: 1 / -1; }
+  .site-footer .sf-logo img { height: 38px; }
+  .site-footer .sf-brand p { margin: 12px 0 16px; font-size: 13px; line-height: 1.6; max-width: none; }
+  .site-footer .sf-social button { width: 34px; height: 34px; }
+  .site-footer .sf-col h4 { font-size: 14.5px; margin-bottom: 14px; padding-bottom: 9px; }
+  .site-footer .sf-col > a { font-size: 12.5px; margin-bottom: 9px; }
+  .site-footer .sf-contact { grid-column: 1 / -1; }
+  .site-footer .sf-contact h4 { margin-bottom: 14px; }
+  .site-footer .sf-contact p { font-size: 13px; margin-bottom: 10px; }
+  .site-footer .sf-contact p:last-child { margin-bottom: 0; }
+  .site-footer .sf-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-top: 16px;
+    padding-bottom: 4px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .site-footer .sf-legal { gap: 18px; }
+  .site-footer .sf-credit { padding: 2px 16px 16px; font-size: 12px; }
+}
+
+/* Footer: keep legal links clear of the floating back-to-top button (desktop) */
+@media (min-width: 769px) {
+  .site-footer .sf-legal { margin-right: 64px; }
+}
+
+/* Footer (mobile): logo + social icons share one row to save height */
+@media (max-width: 768px) {
+  .site-footer .sf-brand {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    row-gap: 10px;
+  }
+  .site-footer .sf-logo { grid-column: 1; grid-row: 1; }
+  .site-footer .sf-social { grid-column: 2; grid-row: 1; gap: 8px; }
+  .site-footer .sf-brand p { grid-column: 1 / -1; grid-row: 2; margin: 0; }
+  .site-footer .sf-social button { width: 32px; height: 32px; }
+  .site-footer .sf-social svg { width: 15px; height: 15px; }
+  .site-footer .sf-top { gap: 22px 12px; }
+}
+
+/* ===== Mobile: doctor image stays glued to the hero's bottom edge =====
+   The desktop "float" animation lifts the image up to 14px, which exposes
+   green space under it on mobile. Keep the entrance animation, drop the bobbing. */
+@media (max-width: 768px) {
+  html.ready .hero-doctor,
+  html.js .hero-doctor {
+    animation: doctorIn 1.1s .3s var(--ease) both !important;
+    translate: 0 0;
+  }
+  .hero-doctor {
+    margin-bottom: -2px !important;
+  }
 }
