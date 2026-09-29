@@ -10,7 +10,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script>document.documentElement.classList.add("js")</script>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <link rel="stylesheet" href="CSS/style.css" />
   </head>
   <body>
@@ -54,7 +56,11 @@
         <!-- Right icons -->
         <div class="account-actions">
           <!-- Mobile search icon -->
-          <button class="nav-icon search-toggle" id="searchToggle" aria-label="Search">
+          <button
+            class="nav-icon search-toggle"
+            id="searchToggle"
+            aria-label="Search"
+          >
             <svg viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="6"></circle>
               <line x1="16" y1="16" x2="21" y2="21"></line>
@@ -62,7 +68,11 @@
           </button>
 
           <!-- Wishlist -->
-          <button class="nav-icon wishlist-btn" id="wishlistButton" aria-label="Wishlist">
+          <button
+            class="nav-icon wishlist-btn"
+            id="wishlistButton"
+            aria-label="Wishlist"
+          >
             <svg viewBox="0 0 24 24">
               <path
                 d="M20.8 8.8C20.8 5.8 18.5 4 16 4c-1.5 0-3 .8-4 2-1-1.2-2.5-2-4-2-2.5 0-4.8 1.8-4.8 4.8C3.2 13.5 8.2 16.5 12 20c3.8-3.5 8.8-6.5 8.8-11.2z"
@@ -131,11 +141,15 @@
             </p>
             <button class="hero-button" id="startShopping">
               Start Shopping
-              <span><img
+              <span
+                ><img
                   src="assets/icon/shopping%20icon.png"
-                  onerror="this.onerror=null;this.src='assets/icon/shopping_icon.png'"
+                  onerror="
+                    this.onerror = null;
+                    this.src = 'assets/icon/shopping_icon.png';
+                  "
                   alt=""
-                /></span>
+              /></span>
             </button>
           </div>
         </div>
@@ -310,10 +324,26 @@
             <button id="orderNow">Place An Order Now <span>→</span></button>
           </div>
           <div class="hot-art" aria-hidden="true">
-            <img src="assets/hot-capsules-top.png" alt="" class="hot-layer hot-capsules-top" />
-            <img src="assets/hot-particles.png" alt="" class="hot-layer hot-particles" />
-            <img src="assets/hot-leaves.png" alt="" class="hot-layer hot-leaves" />
-            <img src="assets/hot-capsules-bottom.png" alt="" class="hot-layer hot-capsules-bottom" />
+            <img
+              src="assets/hot-capsules-top.png"
+              alt=""
+              class="hot-layer hot-capsules-top"
+            />
+            <img
+              src="assets/hot-particles.png"
+              alt=""
+              class="hot-layer hot-particles"
+            />
+            <img
+              src="assets/hot-leaves.png"
+              alt=""
+              class="hot-layer hot-leaves"
+            />
+            <img
+              src="assets/hot-capsules-bottom.png"
+              alt=""
+              class="hot-layer hot-capsules-bottom"
+            />
           </div>
         </div>
       </section>
@@ -422,34 +452,44 @@
         </div>
       </div>
       <div class="footer-bottom container">
-        <span>© 2023 HEALTHY. All rights reserved.</span
+        <span>© 2026 HEALTHY. All rights reserved.</span
         ><span>Terms and Conditions</span><span>Privacy Policy</span>
       </div>
+      <div class="footer-credit">© Developed by Shamimur Rahman</div>
     </footer>
 
     <div class="cart-panel" id="cartPanel">
       <div class="cart-head">
-        <h3>Your Cart <span class="cart-head-count" id="cartHeadCount"></span></h3>
+        <h3>
+          Your Cart <span class="cart-head-count" id="cartHeadCount"></span>
+        </h3>
         <button id="closeCart" aria-label="Close cart">×</button>
       </div>
-      <div class="ship-bar" id="shipBar"></div>
       <div id="cartItems"></div>
       <div class="cart-footer" id="cartFooter">
         <div class="promo-row" id="promoRow">
-          <input id="promoInput" type="text" placeholder="Promo code" autocomplete="off" />
+          <input
+            id="promoInput"
+            type="text"
+            placeholder="Promo code"
+            autocomplete="off"
+          />
           <button id="promoApply">Apply</button>
         </div>
         <div class="promo-msg" id="promoMsg"></div>
-        <div class="sum-line"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
-        <div class="sum-line discount" id="discountLine" style="display:none">
+        <div class="sum-line">
+          <span>Subtotal</span><span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="sum-line discount" id="discountLine" style="display: none">
           <span>Discount</span><span id="cartDiscount">-$0.00</span>
         </div>
-        <div class="sum-line"><span>Delivery</span><span id="cartDelivery">$0.00</span></div>
+        <div class="sum-line">
+          <span>Delivery</span><span id="cartDelivery">$0.00</span>
+        </div>
         <div class="cart-total">
           <span>Total</span><strong id="cartTotal">$0.00</strong>
         </div>
         <button class="checkout" id="checkout">Place Order</button>
-        <button class="clear-cart" id="clearCart">Clear cart</button>
       </div>
     </div>
     <div class="cart-panel wish-panel" id="wishPanel">

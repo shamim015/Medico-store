@@ -191,20 +191,6 @@ function updateCart() {
 
   const t = cartTotals();
 
-  // free-delivery progress
-  const ship = document.getElementById("shipBar");
-  if (!cart.length) {
-    ship.style.display = "none";
-  } else {
-    ship.style.display = "block";
-    const left = FREE_DELIVERY_MIN - t.after;
-    const w = Math.min(100, (t.after / FREE_DELIVERY_MIN) * 100);
-    ship.innerHTML =
-      left > 0
-        ? `<p>Add <b>${money(left)}</b> more for <b>free delivery</b></p><div class="ship-track"><i style="width:${w}%"></i></div>`
-        : `<p class="ok"><b>You've unlocked free delivery</b></p><div class="ship-track full"><i style="width:100%"></i></div>`;
-  }
-
   // items
   document.getElementById("cartItems").innerHTML = cart.length
     ? cart
@@ -421,13 +407,6 @@ document.getElementById("promoApply").onclick = applyPromo;
 document.getElementById("promoInput").addEventListener("keydown", (e) => {
   if (e.key === "Enter") applyPromo();
 });
-document.getElementById("clearCart").onclick = () => {
-  if (!cart.length) return;
-  if (confirm("Remove all items from your cart?")) {
-    cart = [];
-    save();
-  }
-};
 document.getElementById("checkout").onclick = () =>
   toast(
     cart.length
